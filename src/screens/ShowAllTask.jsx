@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import task from '../assets/lunol2d.png'
+import taskluno from '../assets/lunol2d.png'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from '../libs/supabaseClient.js'
@@ -34,7 +34,7 @@ function ShowAlltask() {
   return (
     <>
       <div className="w-8/12 border border-amber-500 shadow-md rounded p-6 mx-auto mt-20 flex flex-col items-center">
-        <img src={task} alt="task" className='w-20 mb-4' />
+        <img src={taskluno} alt="task" className='w-20 mb-4' />
         <h1 className="text-2xl font-bold text-fuchsia-400 text-center">
           Task APP
           <br />
@@ -65,13 +65,34 @@ function ShowAlltask() {
               {
                 tasks.map((task) => (
                   <tr key={task.id}>
-                    <th className="p-2 border-teal-600"></th>
-                    <th className="p-2 border-teal-600">{task.Title}</th>
-                    <th className="p-2 border-teal-600">{task.Detail}</th>
-                    <th className="p-2 border-teal-600">{task.completed}</th>
-                    <th className="p-2 border-teal-600">{task.created_at}</th>
-                    <th className="p-2 border-teal-600">{task.lasted_update}</th>
-                    <th className="p-2 border-teal-600">Manage</th>
+                    <td className="p-2 border-teal-600">
+                      {
+                        task.ImageURL === null || task.ImageURL === ''
+                          ? <img className='w-20 mx-auto' src={taskluno} alt='Img' />
+                          : <img className='w-20 mx-auto' src={task.ImageURL} alt='Img' />
+                      }
+                    </td>
+                    <td className="p-2 border-teal-600">{task.Title}</td>
+                    <td className="p-2 border-teal-600">{task.Detail}</td>
+                    <td className="p-2 border-teal-600">
+                    {
+                      task.completed == true ? <span className='text-green-400'>Completed ✔</span> : <span className='text-red-500'>WIP ❌</span>  
+                    }
+                    </td>
+                    <td className="p-2 border-teal-600">{new Date(task.created_at).toLocaleDateString('th-TH',{
+                      year:'numeric',
+                      month:'long',
+                      day:'numeric'
+                      })}</td>
+                    <td className="p-2 border-teal-600">{new Date(task.lasted_update).toLocaleDateString('th-TH',{
+                      year:'numeric',
+                      month:'long',
+                      day:'numeric'
+                      })}</td>
+                    <td className="p-2 border-teal-600">
+                      <Link to={'/update'} className='text-green-500'>Edit</Link>
+                      <button className='text-red-500 ml-2 cursor-pointer'>Delete</button>
+                    </td>
                   </tr>
                 ))
               }
