@@ -2,23 +2,34 @@ import React from 'react'
 import Footer from '../components/Footer'
 import task from '../assets/lunol2d.png'
 import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 function Home() {
   const [secretcode, setSecretcode] = useState('')
 
+  const swalalerts = (alrt) => {
+    Swal.fire({
+      icon:'warning',
+      iconColor:'F59B00',
+      title:alrt,
+      confirmButtonText:'Ok',
+      confirmButtonColor:'#0049F5'
+    })
+  }
+
   const handletaskclick = () => {
 
     if (secretcode === '') {
-      alert('Please input your secret code')
+      swalalerts('Please Input Secret Code')
       return;
     }
     if (secretcode.toLowerCase() === 'sau') {
       window.location.href = '/showall'
     }
     else { 
-      alert('Wrong secret code')
+      swalalerts('Wrong/Invalid Input Code')
+      }
     }
-  }
 
 
 
