@@ -52,44 +52,44 @@ function ShowAlltask() {
           <table className="w-full border border-emerald-600 text-md">
             <thead>
               <tr>
-                <th className="p-2 border-teal-600">Image</th>
-                <th className="p-2 border-teal-600">Task Name</th>
-                <th className="p-2 border-teal-600">Task Detail</th>
-                <th className="p-2 border-teal-600">Status</th>
-                <th className="p-2 border-teal-600">Create date</th>
-                <th className="p-2 border-teal-600">Lasted edit</th>
-                <th className="p-2 border-teal-600">Manage</th>
+                <th className="p-2 border border-teal-600">Image</th>
+                <th className="p-2 border border-teal-600">Task Name</th>
+                <th className="p-2 border border-teal-600">Task Detail</th>
+                <th className="p-2 border border-teal-600">Status</th>
+                <th className="p-2 border border-teal-600">Create date</th>
+                <th className="p-2 border border-teal-600">Lasted edit</th>
+                <th className="p-2 border border-teal-600">Manage</th>
               </tr>
             </thead>
             <tbody>
               {
                 tasks.map((task) => (
                   <tr key={task.id}>
-                    <td className="p-2 border-teal-600">
+                    <td className="p-2 border border-teal-600">
                       {
                         task.ImageURL === null || task.ImageURL === ''
                           ? <img className='w-20 mx-auto' src={taskluno} alt='Img' />
                           : <img className='w-20 mx-auto' src={task.ImageURL} alt='Img' />
                       }
                     </td>
-                    <td className="p-2 border-teal-600">{task.Title}</td>
-                    <td className="p-2 border-teal-600">{task.Detail}</td>
-                    <td className="p-2 border-teal-600">
+                    <td className="p-2 border border-teal-600">{task.Title}</td>
+                    <td className="p-2 border border-teal-600">{task.Detail}</td>
+                    <td className="p-2 border border-teal-600">
                     {
                       task.completed == true ? <span className='text-green-400'>Completed ✔</span> : <span className='text-red-500'>WIP ❌</span>  
                     }
                     </td>
-                    <td className="p-2 border-teal-600">{new Date(task.created_at).toLocaleDateString('th-TH',{
+                    <td className="p-2 border border-teal-600">{new Date(task.created_at).toLocaleDateString('th-TH',{
                       year:'numeric',
                       month:'long',
                       day:'numeric'
                       })}</td>
-                    <td className="p-2 border-teal-600">{new Date(task.lasted_update).toLocaleDateString('th-TH',{
+                    <td className="p-2 border border-teal-600">{new Date(task.lasted_update).toLocaleDateString('th-TH',{
                       year:'numeric',
                       month:'long',
                       day:'numeric'
                       })}</td>
-                    <td className="p-2 border-teal-600">
+                    <td className="p-2 border border-teal-600">
                       <Link to={'/update'} className='text-green-500'>Edit</Link>
                       <button className='text-red-500 ml-2 cursor-pointer'>Delete</button>
                     </td>

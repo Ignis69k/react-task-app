@@ -30,12 +30,19 @@ function UpdateTask() {
             <label htmlFor="ImageSE" className='w-full bg-cyan-400 text-white p-2 rounded cursor-pointer ml-5'>Select Picture</label>
           </div>
           <div className='mt-10'>
+            <label className='mt-10'>Task Status</label>
+            <select className='w-full p-2 border border-gray-400 rounded'>
+              <option value="1">Completed ✅</option>
+              <option value="0">WIP ❌</option>
+            </select>
+          </div>
+          <div className='mt-10'>
             <button className='w-full bg-sky-400 hover:bg-emerald-500 p-2 text-white rounded cursor-pointer text-xl'>Edit Items</button>
           </div>
           <div className='mt-10 text-center'>
             <Link to={'/showall'} className='text-sky-400 hover:text-emerald-500 cursor-pointer text-2xl'>Back to All Task</Link>
           </div>
-          
+
         </form>
       </div>
       <Footer />

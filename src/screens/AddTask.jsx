@@ -6,6 +6,12 @@ import { useState } from 'react'
 import { supabase } from '../libs/supabaseClient.js'
 
 function AddTask() {
+  const {Title, setTitle} = useState('')
+  const {Detail, setDetail} = useState('')
+  const {Completed, setCompteled} = useState(false)
+  const {ImageFE, setImgFile} = useState(null)
+  const {ImgPrev, setImgPrev} = useState('')
+  
   return (
     <>
       <div className="w-8/12 border border-amber-500 shadow-md rounded p-6 mx-auto mt-20 flex flex-col items-center">
@@ -28,6 +34,13 @@ function AddTask() {
             <label className='mt-10'>Task Picture</label>
             <input type="file" placeholder='Input Task Picture' className='hidden' id="ImageSE" accept='image/' />
             <label htmlFor="ImageSE" className='w-full bg-cyan-400 text-white p-2 rounded cursor-pointer ml-5'>Select Picture</label>
+          </div>
+          <div className='mt-10'>
+            <label className='mt-10'>Task Status</label>
+            <select className='w-full p-2 border border-gray-400 rounded'>
+              <option value="1">Completed ✅</option>
+              <option value="0">WIP ❌</option>
+            </select>
           </div>
           <div className='mt-10'>
             <button className='w-full bg-sky-400 hover:bg-emerald-500 p-2 text-white rounded cursor-pointer text-xl'>Save/AddItem</button>

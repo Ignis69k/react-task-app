@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './screens/Home'
 import AddTask from './screens/AddTask'
-import ShowAlltask from './screens/ShowAlltask'
+import ShowAlltask from './screens/ShowAllTask'
 import UpdateTask from './screens/UpdateTask'
 
 function App() {
