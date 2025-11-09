@@ -7,6 +7,7 @@ import { supabase } from '../libs/supabaseClient.js'
 
 function ShowAlltask() {
   const [tasks, setTasks] = useState([])
+
   //run everytime when page is rendered 
   useEffect(() => {
     //Pull data from supabase
@@ -30,7 +31,22 @@ function ShowAlltask() {
     }
   }, []
   )
-
+  const DeleteHandle = async (id, ImageURL) => {
+    if (confirm('Are you sure?') == true) {
+      if (ImageURL != '') {
+        const ImgName = ImageURL.split('/').pop()
+        await supabase.storage.from('nczDB1-bk').remove([ImgName])
+      }
+      const { error } = await supabase.from('nczDB1').delete().eq('id', id)
+      if (error) {
+        alert("Delete Error")
+        throw error
+      } else {
+        alert("Success")
+        setTasks(tasks.filter(task => task.id !== id))
+      }
+    }
+  }
   return (
     <>
       <div className="w-8/12 border border-amber-500 shadow-md rounded p-6 mx-auto mt-20 flex flex-col items-center">
@@ -75,23 +91,23 @@ function ShowAlltask() {
                     <td className="p-2 border border-teal-600">{task.Title}</td>
                     <td className="p-2 border border-teal-600">{task.Detail}</td>
                     <td className="p-2 border border-teal-600">
-                    {
-                      task.completed == true ? <span className='text-green-400'>Completed ✔</span> : <span className='text-red-500'>WIP ❌</span>  
-                    }
+                      {
+                        task.completed == true ? <span className='text-green-400'>Completed ✔</span> : <span className='text-red-500'>WIP ❌</span>
+                      }
                     </td>
-                    <td className="p-2 border border-teal-600">{new Date(task.created_at).toLocaleDateString('th-TH',{
-                      year:'numeric',
-                      month:'long',
-                      day:'numeric'
-                      })}</td>
-                    <td className="p-2 border border-teal-600">{new Date(task.lasted_update).toLocaleDateString('th-TH',{
-                      year:'numeric',
-                      month:'long',
-                      day:'numeric'
-                      })}</td>
+                    <td className="p-2 border border-teal-600">{new Date(task.created_at).toLocaleDateString('th-TH', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}</td>
+                    <td className="p-2 border border-teal-600">{new Date(task.lasted_update).toLocaleDateString('th-TH', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}</td>
                     <td className="p-2 border border-teal-600">
                       <Link to={'/update'} className='text-green-500'>Edit</Link>
-                      <button className='text-red-500 ml-2 cursor-pointer'>Delete</button>
+                      <button className='text-red-500 ml-2 cursor-pointer' onClick={() => DeleteHandle(task.id, task.ImageURL)}>Delete</button>
                     </td>
                   </tr>
                 ))
