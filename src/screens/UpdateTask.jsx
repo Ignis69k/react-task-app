@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import taskluno from '../assets/lunol2d.png'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { supabase } from '../libs/supabaseClient.js'
 
