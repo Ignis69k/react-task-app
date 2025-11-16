@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { supabase } from '../libs/supabaseClient.js'
 
 function UpdateTask() {
-  const { id } = useParams
+  // const { id } = useParams
   const [Title, setTitle] = useState('')
   const [Detail, setDetail] = useState('')
   const [Completed, setCompleted] = useState(false)
