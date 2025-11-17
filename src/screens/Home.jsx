@@ -24,7 +24,8 @@ function Home() {
       return;
     }
     if (secretcode.toLowerCase() === 'sau') {
-      window.location.href = '/showall'
+      //window.location.href = '/showall'
+      navigate('/showalltask')
     }
     else { 
       swalalerts('Wrong/Invalid Input Code')
