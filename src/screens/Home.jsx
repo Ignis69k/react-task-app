@@ -2,6 +2,7 @@ import React from 'react'
 import Footer from '../components/Footer'
 import task from '../assets/lunol2d.png'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function Home() {
