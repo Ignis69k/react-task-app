@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function Home() {
+  const navigate = useNavigate()  
   const [secretcode, setSecretcode] = useState('')
 
   const swalalerts = (alrt) => {
