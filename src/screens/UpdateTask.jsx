@@ -7,7 +7,7 @@ import { supabase } from '../libs/supabaseClient.js'
 import { useNavigate } from 'react-router-dom'
 
 function UpdateTask() {
-  const { id } = useParams
+  const { id } = useParams()
   const navigate = useNavigate()
   const [Title, setTitle] = useState('')
   const [Detail, setDetail] = useState('')
