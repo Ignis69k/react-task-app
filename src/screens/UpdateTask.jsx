@@ -26,8 +26,8 @@ function UpdateTask() {
         //เอาข้อมูลที่ได้มาไปกำหนดให้กับ state
         setTitle(data.title)
         setDetail(data.detail)
-        setIsComplete(data.Completed)
-        setImagePreview(data.ImageURL)
+        setCompleted(data.Completed)
+        setImgPrev(data.ImageURL)
       }
     }
 
@@ -75,8 +75,8 @@ function UpdateTask() {
     const { error } = await supabase
       .from('nczDB1')
       .update({
-        title: Title,
-        detail: Detail,
+        Title: Title,
+        Detail: Detail,
         Completed: Completed,
         ImageURL: ImgURL
       })
