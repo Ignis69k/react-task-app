@@ -106,7 +106,7 @@ function ShowAlltask() {
                       day: 'numeric'
                     })}</td>
                     <td className="p-2 border border-teal-600">
-                      <Link to={'/update' + task.id} className='text-green-500'>Edit</Link>
+                      <Link to={'/update/' + task.id} className='text-green-500'>Edit</Link>
                       <button className='text-red-500 ml-2 cursor-pointer' onClick={() => DeleteHandle(task.id, task.ImageURL)}>Delete</button>
                     </td>
                   </tr>
