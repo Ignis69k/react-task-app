@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from '../components/Footer'
 import taskluno from '../assets/lunol2d.png'
 import { Link, useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { supabase } from '../libs/supabaseClient.js'
 import { useNavigate } from 'react-router-dom'
 
