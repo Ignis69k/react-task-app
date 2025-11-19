@@ -20,18 +20,18 @@ function UpdateTask() {
       const { data, error } = await supabase.from('nczDB1').select('*').eq('id', id).single()
 
       if (error) {
-        alert('เกิดข้อผิดพลาดในการดึงข้อมูลงาน กรุณาลองใหม่อีกครั้ง!!!')
+        alert('Fail To Fetch Pls Try again later')
         return;
       } else {
         //เอาข้อมูลที่ได้มาไปกำหนดให้กับ state
-        setTitle(data.title)
-        setDetail(data.detail)
+        setTitle(data.Title)
+        setDetail(data.Detail)
         setCompleted(data.Completed)
         setImgPrev(data.ImageURL)
       }
     }
 
-    fetchTask()  //อย่าลืมเรียกใช้งาน fetchTask()    
+    fetchTask()
   }, [])
 
   const ImgSelect = (e) => {
