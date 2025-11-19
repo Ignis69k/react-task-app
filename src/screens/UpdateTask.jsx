@@ -56,10 +56,10 @@ function UpdateTask() {
     const { error } = await supabase
       .from('nczDB1')
       .update({
-        title: title,
-        detail: detail,
-        is_completed: isComplete,
-        image_url: imageUrl
+        title: Title,
+        detail: Detail,
+        Completed: Completed,
+        ImageURL: ImgURL
       })
       .eq('id', id)
 
