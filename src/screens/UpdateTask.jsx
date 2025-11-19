@@ -15,6 +15,25 @@ function UpdateTask() {
   const [ImageFE, setImgFile] = useState(null)
   const [ImgPrev, setImgPrev] = useState('')
 
+  useEffect(() => {
+    const fetchTask = async () => {
+      const { data, error } = await supabase.from('nczDB1').select('*').eq('id', id).single()
+
+      if (error) {
+        alert('เกิดข้อผิดพลาดในการดึงข้อมูลงาน กรุณาลองใหม่อีกครั้ง!!!')
+        return;
+      } else {
+        //เอาข้อมูลที่ได้มาไปกำหนดให้กับ state
+        setTitle(data.title)
+        setDetail(data.detail)
+        setIsComplete(data.Completed)
+        setImagePreview(data.ImageURL)
+      }
+    }
+
+    fetchTask()  //อย่าลืมเรียกใช้งาน fetchTask()    
+  }, [])
+
   const ImgSelect = (e) => {
     const file = e.target.files[0]
 
