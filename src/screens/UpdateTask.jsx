@@ -4,9 +4,11 @@ import taskluno from '../assets/lunol2d.png'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { supabase } from '../libs/supabaseClient.js'
+import { useNavigate } from 'react-router-dom'
 
 function UpdateTask() {
-  // const { id } = useParams
+  const { id } = useParams
+  const navigate = useNavigate()
   const [Title, setTitle] = useState('')
   const [Detail, setDetail] = useState('')
   const [Completed, setCompleted] = useState(false)
@@ -29,17 +31,18 @@ function UpdateTask() {
       alert('Please Input All the data')
       return;
     }
-    
+
     let ImgURL = ''
+
     if (ImageFE) {
       const ImgName = ImgPrev.split('/').pop()
       await supabase.storage.from('nczDB1-bk').remove([ImgName])
-      
+
       let NewImgName = `${Date.now()}_${ImageFE.name}`
       const { error } = await supabase.storage
         .from('nczDB1-bk')
         .upload(NewImgName, ImageFE)
-        
+
       if (error) {
         alert("Upload Error Please try again")
         return;
@@ -49,6 +52,23 @@ function UpdateTask() {
           .getPublicUrl(NewImgName)
         ImgURL = data.publicUrl
       }
+    }
+    const { error } = await supabase
+      .from('nczDB1')
+      .update({
+        title: title,
+        detail: detail,
+        is_completed: isComplete,
+        image_url: imageUrl
+      })
+      .eq('id', id)
+
+    if (error) {
+      alert('เกิดข้อผิดพลาดในการบันทึกแก้ไขข้อมูล กรุณาลองใหม่อีกครั้ง!!!')
+      return
+    } else {
+      alert('บันทึกแก้ไขข้อมูลเรียบร้อยแล้ว!!!')
+      navigate('/showall')
     }
   }
 
